@@ -4,11 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 func main() {
-	c := gin.Default()
+	router := gin.Default()
 
-	
-	
-	c.Run("8080")
+	router.Run("8080")
 }
