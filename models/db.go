@@ -4,13 +4,21 @@ import (
 	"database/sql"
 	"log"
 	"time"
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-sql-driver/mysql"
 )
 
 var Db *sql.DB  = connection()
 
 func connection() *sql.DB {
-	Db, err := sql.Open("mysql", "root@locahost")
+	cfg := mysql.Config{
+		User:                 "root",
+		Passwd:               "",
+		Net:                  "tcp",
+		Addr:                 "127.0.0.1:3306",
+		DBName:               "pm",
+		AllowNativePasswords: true,
+	}
+	Db, err := sql.Open("mysql", cfg.FormatDSN())
 	if err != nil {
 		log.Fatalln(err)
 	}
